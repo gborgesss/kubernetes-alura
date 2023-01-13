@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+spec:
+  containers:
+    - name: nginx-countainer
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: primeiro-volume
+    - name: jenkins-countainer
+      image: jenkins/jenkins:alpine
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: primeiro-volume
+  volumes:
+    - name: primeiro-volume
+      hostPath:
+        path: /C/Users/Gabriel/Desktop/kubernetes-alura/primeiro-volume
+        type: Directory
